@@ -62,7 +62,9 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 	itemList = {
 		"Character Options",
 		{
-			"Fill Force Bar", "fill_force_bar",
+			--"Fill Force Bar", "fill_force_bar",
+			"Cleanse Character", "cleanse_character",
+			"Enhance Character", "enhance_character",
 			"Reset Buffs", "reset_buffs",
 			"Learn Languages", "language",
 		}
