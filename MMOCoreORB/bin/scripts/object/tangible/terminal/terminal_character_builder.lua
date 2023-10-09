@@ -66,7 +66,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 			"Cleanse Character", "cleanse_character",
 			"Enhance Character", "enhance_character",
 			"Reset Buffs", "reset_buffs",
-			"Learn Languages", "language",
+			--"Learn Languages", "language",
 		}
 	}
 }
