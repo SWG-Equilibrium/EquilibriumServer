@@ -334,8 +334,18 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 	auto client = callback->getClient();
 
-	if (client->getCharacterCount(zoneServer.get()->getGalaxyID()) >= 10) {
-		ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are limited to 10 characters per galaxy.", 0x0);
+	// MODIFICATION: EQUILIBRIUM
+	// Allow 5 characters per account
+
+	// if (client->getCharacterCount(zoneServer.get()->getGalaxyID()) >= 10) {
+	// 	ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are limited to 10 characters per galaxy.", 0x0);
+	// 	client->sendMessage(errMsg);
+
+	// 	return false;
+	// }
+
+	if (client->getCharacterCount(zoneServer.get()->getGalaxyID()) >= 5) {
+		ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are limited to 5 characters per galaxy.", 0x0);
 		client->sendMessage(errMsg);
 
 		return false;
@@ -488,8 +498,19 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 							Time timeVal(sec);
 
-							if (timeVal.miliDifference() < 3600000) {
-								ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are only permitted to create one character per hour. Repeat attempts prior to 1 hour elapsing will reset the timer.", 0x0);
+							// MODIFICATION: EQUILIBRIUM
+							// Reduce character creation timer
+
+							// if (timeVal.miliDifference() < 3600000) {
+							// 	ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are only permitted to create one character per hour. Repeat attempts prior to 1 hour elapsing will reset the timer.", 0x0);
+							// 	client->sendMessage(errMsg);
+
+							// 	playerCreature->destroyPlayerCreatureFromDatabase(true);
+							// 	return false;
+							// }
+
+							if (timeVal.miliDifference() < 300000) {
+								ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are only permitted to create one character every 5 minutes. Repeat attempts prior to 5 minutes elapsing will reset the timer.", 0x0);
 								client->sendMessage(errMsg);
 
 								playerCreature->destroyPlayerCreatureFromDatabase(true);
@@ -505,8 +526,8 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 					if (lastCreatedCharacter.containsKey(accID)) {
 						Time lastCreatedTime = lastCreatedCharacter.get(accID);
 
-						if (lastCreatedTime.miliDifference() < 3600000) {
-							ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are only permitted to create one character per hour. Repeat attempts prior to 1 hour elapsing will reset the timer.", 0x0);
+						if (lastCreatedTime.miliDifference() < 300000) {
+							ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are only permitted to create one character every 5 minutes. Repeat attempts prior to five minutes elapsing will reset the timer.", 0x0);
 							client->sendMessage(errMsg);
 
 							playerCreature->destroyPlayerCreatureFromDatabase(true);
