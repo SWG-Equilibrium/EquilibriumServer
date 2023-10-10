@@ -84,10 +84,16 @@ void VehicleControlDeviceImplementation::generateObject(CreatureObject* player) 
 		Reference<CallMountTask*> callMount = new CallMountTask(_this.getReferenceUnsafeStaticCast(), player, "call_mount");
 
 		StringIdChatParameter message("pet/pet_menu", "call_vehicle_delay");
-		message.setDI(15);
+		// MODIFICATION: EQUILIBRIUM
+		// Set message for call mount at 5 seconds
+		// message.setDI(15);
+		message.setDI(5);
 		player->sendSystemMessage(message);
 
-		player->addPendingTask("call_mount", callMount, 15 * 1000);
+		// MODIFICATION: EQUILIBRIUM
+		// Change mount call time to 5 seconds
+		// player->addPendingTask("call_mount", callMount, 15 * 1000);
+		player->addPendingTask("call_mount", callMount, 5 * 1000);
 
 		if (vehicleControlObserver == nullptr) {
 			vehicleControlObserver = new VehicleControlObserver(_this.getReferenceUnsafeStaticCast());
@@ -178,7 +184,10 @@ void VehicleControlDeviceImplementation::storeObject(CreatureObject* player, boo
 	/*if (!controlledObject->isInQuadTree())
 		return;*/
 
-	if (!force && (player->isInCombat() || player->isDead()))
+	// MODIFICATION: EQUILIBRIUM
+	// Remove limitation for not being able to store mount in combat
+	// if (!force && (player->isInCombat() || player->isDead()))
+	if (!force && player->isDead())
 		return;
 
 	if (player->isRidingMount() && player->getParent() == controlledObject) {

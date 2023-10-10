@@ -1230,12 +1230,16 @@ void CraftingSessionImplementation::createPrototype(int clientCounter, bool crea
 
 		if (createItem) {
 
-			startCreationTasks(manufactureSchematic->getComplexity() * 2, false);
+			// MODIFICATION: EQUILIBRIUM
+			// startCreationTasks(manufactureSchematic->getComplexity() * 2, false);
+			startCreationTasks(0, false);
 
 		} else {
 
 			// This is for practicing
-			startCreationTasks(manufactureSchematic->getComplexity() * 2, true);
+			// MODIFICATION: EQUILIBRIUM
+			// startCreationTasks(manufactureSchematic->getComplexity() * 2, true);
+			startCreationTasks(0, true);
 			xp = round(xp * 1.05f);
 		}
 

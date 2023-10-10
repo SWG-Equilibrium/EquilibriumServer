@@ -443,7 +443,10 @@ bool FactoryObjectImplementation::startFactory() {
 			return false;
 	}
 
-	timer = ((int)schematic->getComplexity()) * 8;
+	// MODIFICATION: EQUILIBRIUM
+	// Set all factory item craft times to 1 second
+	// timer = ((int)schematic->getComplexity()) * 8;
+	timer = 1;
 
 	if(!populateSchematicBlueprint(schematic))
 		return false;

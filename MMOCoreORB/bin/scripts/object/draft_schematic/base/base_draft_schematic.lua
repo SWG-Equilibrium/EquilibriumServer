@@ -42,7 +42,9 @@
 
 
 object_draft_schematic_base_base_draft_schematic = object_draft_schematic_base_shared_base_draft_schematic:new {
-	factoryCrateSize = 25,
+	-- MODIFICATION: EQUILIBRIUM
+	-- factoryCrateSize = 25,
+	factoryCrateSize = 1000,
 }
 
 ObjectTemplates:addTemplate(object_draft_schematic_base_base_draft_schematic, "object/draft_schematic/base/base_draft_schematic.iff")

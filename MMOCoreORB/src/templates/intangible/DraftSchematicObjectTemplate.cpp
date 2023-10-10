@@ -39,7 +39,9 @@ DraftSchematicObjectTemplate::DraftSchematicObjectTemplate() {
 	skillMods.setNoDuplicateInsertPlan();
 	skillMods.setNullValue(0);
 	labratory = 0;
-	factoryCrateSize = 25;
+	// MODIFICATION: EQUILIBRIUM
+	// factoryCrateSize = 25;
+	factoryCrateSize = 1000;
 }
 
 DraftSchematicObjectTemplate::~DraftSchematicObjectTemplate() {
